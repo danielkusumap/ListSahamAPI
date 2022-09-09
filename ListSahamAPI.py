@@ -24,43 +24,44 @@ def api():
     "Industrials", "Infrastructures", "Properties & Real Estate", "Technology", "Transportation & Logistic"]
     
     sector = sector.upper().replace("AND", "&")
-
     if sector.upper() == "ALL SECTOR":
         output_code = []
-        output_company_name = []
+        output_company = []
         output_sector = []
         for _ in all_sector:
-            data = data.loc[data["sektor"].str.upper() == _.upper()]
-            kode = data["kode"]
-            company = data["nama perusahaan"]
-            sector = data["sector"]
-##            temp = [kode[i] for i in kode.index]
-            for i in kode.index:
-                output_code.append(kode[i])
-                output_company_name.append(company[i])
-                output_sector.append(sector[i])
-##            output_code.extend(temp)
+            loc_data = data.loc[data["sektor"].str.upper() == _.upper()]
+            kode_x = loc_data["kode"]
+            company_x = loc_data["nama perusahaan"]
+            sector_x = loc_data["sektor"]
+
+            for i in kode_x.index:
+                output_code.append(kode_x[i])
+                output_company.append(company_x[i])
+                output_sector.append(sector_x[i])
+            # temp = [kode_x[i] for i in kode_x.index]
+            # output_code.extend(temp)
     else:
-        data = data.loc[data["sektor"].str.upper() == sector.upper()]
-        kode = data["kode"]
-        company = data["nama perusahaan"]
-        sector = data["sector"]
-        output_code = [kode[i] for i in kode.index]
-        output_company_name = [company[i] for i in company.index]
-        output_sector = [sector[i] for i in sector.index]
-        
-    if len(kode) > 0:
+        loc_data = data.loc[data["sektor"].str.upper() == sector.upper()]
+        kode_x = loc_data["kode"]
+        company_x = loc_data["nama perusahaan"]
+        sector_x = loc_data["sektor"]
+
+        output_code = [kode_x[i] for i in kode_x.index]
+        output_company = [company_x[i] for i in company_x.index]
+        output_sector = [sector_x[i] for i in sector_x.index]
+
+    if len(loc_data) > 0:
         response = jsonify(
             message = "done",
             code = output_code,
-            company_name = output_company_name,
+            company = output_company,
             sector = output_sector
         )
     else:
         response = jsonify(
             message = "failed",
             code = "not found",
-            company_name = "not found",
+            company = "not found",
             sector = "not found"
         )
     response.headers.add('Access-Control-Allow-Origin', '*')
