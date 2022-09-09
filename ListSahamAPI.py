@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 import pandas as pd
 
 app = Flask(__name__)
-data = pd.read_csv("../list_saham.csv")
+data = pd.read_csv("list_saham.csv")
 
 @app.route("/")
 def index():
