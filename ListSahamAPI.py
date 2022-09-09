@@ -11,10 +11,13 @@ def index():
     #             "Industrials", "Infrastructures", "Properties & Real Estate", "Technology", "Transportation & Logistic"]
 
     return """
-    choose one sector from this list
-    ["Basic Materials", "Consumer Cyclicals", "Consumer Non-Cyclicals", "Energy", "Financials", "Healthcare",
-    "Industrials", "Infrastructures", "Properties and Real Estate", "Technology", "Transportation & Logistic"]
-    or 'All Sector' if you want to get all sectors
+    choose one sector from this list </br>
+    ["Basic Materials", "Consumer Cyclicals", "Consumer Non-Cyclicals", "Energy", "Financials", "Healthcare", </br>
+    "Industrials", "Infrastructures", "Properties and Real Estate", "Technology", "Transportation and Logistic"] </br>
+    or 'All Sector' if you want to get all sectors </br> </br>
+    example: </br>
+    https://saham-api.herokuapp.com/api?sector=industrials </br>
+    https://saham-api.herokuapp.com/api?sector=all sector </br>
     """
 
 @app.route("/api", methods=["GET"])
