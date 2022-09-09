@@ -1,1 +1,1 @@
-web: gunicorn PythonScript/ListSahamAPI:app
+web: gunicorn ListSahamAPI:app
